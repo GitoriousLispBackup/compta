@@ -1,3 +1,12 @@
+
+
+Transaction Comptable
+
+Dans son principe, l'inscription d'un montant dans un compte implique 
+toujours la mention de même montant dans un autre compte. 
+Impérativement, l'un des deux comptes doit être débité et l'autre doit être 
+crédité de manière à établir la contrepartie.
+
 Dans chaque transaction, il y a un côté "débit" et un côté "crédit".
 Chaque côté contient un ensemble de couples <compte, montant>.  Un
 compte figure au plus une fois dans une transaction.  La somme des
@@ -6,16 +15,16 @@ crédit.
 
 Pour déterminer si un compte doit être débité ou créditer, il suffit
 de se souvenir du choix (arbitraire mais normalisé) que le compte
-bancaire est crédité lorsque un payement est effectué.  Le reste en
-suit. 
+bancaire est crédité lorsqu'un payement est effectué.  
+Le reste en suit. 
 
-Une autre principe est la séparation la notion de coût/revenue et le
+Un autre principe est la séparation de la notion de coût/revenue et le
 versement d'argent.  Les coûts/revenues influencent les impôts, ce qui
 n'est pas le cas des versements d'argent. 
 
 Il y a plusieurs catégories de comptes:
 
-  * Actifs.  Cela corresponde aux ressources disponibles.  Exemples:
+  * Actifs.  Cela correspond aux ressources disponibles.  Exemples:
     compte bancaire, mobilier, immobilier, équipement, etc.  Débit et
     crédit fonctionne comme le compte bancaire, à savoir lorsque la
     ressource diminue, le compte est crédité.  Les compte de cette
@@ -29,7 +38,7 @@ Il y a plusieurs catégories de comptes:
     l'investissement des actionnaire qui est considéré comme une dette
     de l'entreprise à ces actionnaires.  Lorsqu'une dette est payée,
     le compte bancaire est crédité.  Par conséquent, les compte de
-    cette catégorie sont débités lorsque la dette diminue.  Les compte
+    cette catégorie sont débités lorsque la dette diminue.  Les comptes
     de cette catégorie peuvent être débités et crédités, mais le solde
     (crédit - débit cette fois-ci) n'est jamais négatif.  Dans cette
     catégorie figure également un compte pour chaque fournisseur.  Un
@@ -39,16 +48,16 @@ Il y a plusieurs catégories de comptes:
   * Revenues.  Cette catégorie couvre la vente de marchandise et les
     prestations de services.  Pour une petite société, il peut y avoir
     un seul compte ici.  Mais il est également possible d'en avoir
-    plusieurs, selon le type de marchandise out de prestations.
+    plusieurs, selon le type de marchandise ou de prestations.
     Lorsqu'un revenue arrive, le compte bancaire est débité.  Par
     conséquent, les comptes de cette catégorie sont crédités lorsque
     le revenue se produit.  On peut distinguer entre revenues
-    imposables et revenues non imposable.  À la fin de la période
+    imposables et revenues non imposables.  À la fin de la période
     d'opération, ces comptes sont mis à zéro par une seule
     transaction.  Voir plus loin.
 
   * Coût.  Cette catégorie couvre la consommation et des services
-    achetés.  Un coût arrive par exemple lorsqu'on achète quelque
+    achetés.  Un coût arrive par exemple lorsqu'on achète quelle que
     chose de consommable, auquel cas le compte bancaire est crédité.
     Par conséquent, les comptes de cette catégorie sont débités
     lorsque le coût se produit. À la fin de la période d'opération,
@@ -56,7 +65,7 @@ Il y a plusieurs catégories de comptes:
     loin.
 
 À tout moment, mais en particulier à la fin de la période comptable,
-on peut établir deux rapport
+on peut établir deux rapports:
 
   * Le résultat.  C'est un rapport en deux parties, `produits' est
     `consommation'.  Dans chaque partie figure les comptes
@@ -116,7 +125,7 @@ D'autres comptes :
 	    S, alors il faut créditer le compte report-nouveau- de S.
 
 	  . Sinon il faut créditer le compte report-nouveau- de son
-	    solde T et créditer le compte report-nouveau+ d S - T. 
+	    solde T et créditer le compte report-nouveau+ de S - T. 
 
       - Si le résultat est négatif (alors le solde S = débit - crédit
         du compte résultat-bénéfices- est positif)
