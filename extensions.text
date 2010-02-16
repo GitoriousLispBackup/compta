@@ -1,4 +1,6 @@
-                             --*--
+-----------------------------------------------------
+ Facile
+-----------------------------------------------------
 
 Dans la vue d'un compte, rajouter la somme des débits et la somme des
 crédits, ainsi que le solde du compte. 
@@ -25,12 +27,22 @@ d'une entrée dans une transaction.
 
                              --*--
 
+Faire des vérifications avant de valider la création d'une nouvelle
+transaction :
+
+- un même compte ne doit pas apparaître 2 fois
+- somme des débit = somme des crédits
+
+-----------------------------------------------------
+ Moyen
+-----------------------------------------------------
+
 Permettre la création d'un ensemble de comptes pouvant 
 être considéré comme un seul compte.  Un exemple de ce type d'ensemble
 serait "fournisseurs" pour regrouper tous les fournisseurs.  Créer les
 ensembles "Coût" (Télécommunication, Électricité, Nourriture, etc),
 "Revenue" (Salaire, etc),  "Actif" (Créances, Comptes bancaires, Stock
-de marchandise, etc) et "Passif" (Dettes).
+de marchandise, etc) et "Passif" (Dettes). 
 
                              --*--
 
@@ -68,6 +80,27 @@ Automatiser le calcul de la TVA selon les taux en vigueur.
 
                              --*--
 
+Éviter que le logiciel ne plante en informant proprement l'utilisateur
+de la cause du problème.
+
+                             --*--
+
+Écrire un ensemble de tests unitaires pour garantir le bon
+fonctionnement de l'application. S'appuyer pour cela sur un des
+frameworks décrits sur : http://www.cliki.net/test%20framework
+
+                             --*--
+
+Faire du fichier "io.lisp" un projet Common Lisp à part entière, qui
+peut s'installer avec asdf-install depuis Internet. Écrire des tests
+unitaires en ce basant sur un des frameworks décrits dans
+http://www.cliki.net/test%20framework. Écrire aussi une petite
+documentation pour accompagner ce projet.
+
+-----------------------------------------------------
+ Difficile
+-----------------------------------------------------
+
 Alors que certains achats peuvent être considérés comme des coûts
 lorsque le payement est effectué, ce n'est pas toujours le cas.
 L'achat de mobilier ou d'équipement avec une durée de vie qui dépasse
@@ -99,7 +132,7 @@ réalité on manipule 6 comptes différents :
       payement de TVA des autorités. 
 
     tva-versée 
-      Ce compte est débité à chaque fois qu'un achat est effectué .
+      Ce compte est débité à chaque fois qu'un achat est effectué.
 
     tva-collectée
       Ce compte est crédité à chaque fois qu'une vente est effectuée. 
@@ -135,32 +168,11 @@ pourra être réduit.
 
                              --*--
 
-Permettre le changement de taille des différentes fenêtres.
-
-                             --*--
-
-Éviter que le logiciel ne plante en informant proprement l'utilisateur
-de la cause du problème.
-
-                             --*--
-
-Faire des vérifications avant de valider la création d'une nouvelle
-transaction et écrire les tests unitaires associés :
-
-- un même compte ne doit pas apparaître 2 fois
-- somme des débit = somme des crédits
-
-                             --*--
-
-Faire du fichier "io.lisp" un projet Common Lisp à part entière, qui
-peut s'installer avec asdf-install depuis Internet. Écrire aussi une
-petite documentation pour accompagner ce projet.
-
-                             --*--
-
 Ajouter la possibilité d'avoir des graphiques. Par exemple, on veut
 pouvoir savoir comment sont réparties les dépenses mensuelles entre
-les différents comptes (alimentation, abonnements...).
+les différents comptes (alimentation, abonnements...). Vous pouvez
+pour cela utiliser soit cl-pdf vu au premier TD soit CLIM directement
+(voir le Clim II User Guide).
 
                              --*--
 
@@ -173,6 +185,12 @@ Implémenter la sauvegarde automatique et la création de versions de
 sauvegarde. S'inspirer de ce que fait Emacs en lisant les paragraphes
 "backup" et "auto-save file" de son manuel. Permettre que cela soit
 facilement paramétrable par ajout de code.
+
+                             --*--
+
+Permettre l'utilisation d'un calendrier pour rentrer les dates
+(prendre "M-x calendar" dans Emacs et la section "Calendar/Diary" du
+manuel Emacs comme exemples).
  
 %%% Local Variables: 
 %%% mode: text
