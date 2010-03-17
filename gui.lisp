@@ -52,10 +52,8 @@
   nil)
 
 (defun format-amount (pane amount format)
-  (multiple-value-bind
-	(euros cents)
-      (floor amount 100)
-    (format pane format euros cents)))
+  (multiple-value-bind (euros cents) (truncate amount 100)
+    (format pane format euros (abs cents))))
 
 (defun display-entry (pane transaction entry amount-format)
   (let ((medium (sheet-medium pane)))
