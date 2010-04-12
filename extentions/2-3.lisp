@@ -20,7 +20,7 @@
 (in-package :compta-gui)
 
 ;; @Override
-;; Add a panel to show current loaded organizations
+;; Add a member to hold a list of loaded organizations and a panel to show them
 (define-application-frame compta ()
   ((%current-organization :initform (make-instance 'organization :name "Home")
                           :accessor current-organization)
