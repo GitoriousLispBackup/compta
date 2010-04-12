@@ -1,6 +1,8 @@
 (defpackage #:compta-model
     (:use #:common-lisp)
-  (:export #:organization
+  (:export #:accounts-group
+	   #:accounts-groups
+           #:organization
            #:name
            #:accounts #:transactions
            #:account
