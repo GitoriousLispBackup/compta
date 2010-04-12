@@ -28,6 +28,10 @@
                     :width (configuration-value *config* 200 :width :accounts :windows)
                     :height (configuration-value *config* 200 :height :accounts :windows)
                     :display-function 'display-accounts)
+	  (groups :application
+		  :width (configuration-value *config* 200 :width :groups :windows)
+		  :height (configuration-value *config* 650 :height :groups :windows)
+		  :display-function 'display-groups)
           (transactions :application
                         :width (configuration-value *config* 200 :width :transactions :windows)
                         :height (configuration-value *config* 200 :height :transactions :windows)
@@ -44,7 +48,8 @@
 		    ()
 		  (vertically () main inter)
 		  transactions
-		  (vertically () accounts organizations)))))
+		  (vertically () accounts organizations)
+		  groups))))
 
 ;; @Override
 ;; Parse the configuration file

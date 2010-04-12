@@ -34,6 +34,10 @@
                     :width 200
                     :height 650
                     :display-function 'display-accounts)
+	  (groups :application
+		  :width 200
+		  :height 650
+		  :display-function 'display-groups)
           (transactions :application
                         :width 300
                         :height 650
@@ -50,7 +54,11 @@
 		    ()
 		  (vertically () main inter)
 		  transactions
-		  (vertically () accounts organizations)))))
+		  (vertically () accounts organizations)
+		  groups ))))
+
+
+
 
 ;; @Override
 ;; Command to load an organization
