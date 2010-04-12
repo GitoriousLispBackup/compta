@@ -1,5 +1,6 @@
 (in-package #:compta-gui)
 
+
 (define-application-frame compta ()
   ((%current-organization :initform (make-instance 'organization :name "Home")
                           :accessor current-organization))

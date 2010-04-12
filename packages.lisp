@@ -26,6 +26,6 @@
 	   #:*compta-current-version-name*))
 
 (defpackage #:compta-gui
-    (:use #:clim-lisp #:clim #:compta-model #:io #:compta-io)
+    (:use #:clim-lisp #:clim #:compta-model #:io #:compta-io #:trivial-configuration-parser)
   (:export #:compta))
 
