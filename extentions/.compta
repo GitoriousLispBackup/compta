@@ -1,0 +1,22 @@
+windows {
+	main {
+		width = 600;
+		height = 600;
+	}
+	accounts {
+		width = 200;
+		height = 650;
+	}
+	transactions {
+		width = 300;
+		height = 650;
+	}
+	organizations {
+		width = 200;
+		height = 250;
+	}
+	inter {
+		width = 500;
+		height = 100;
+	}
+}
