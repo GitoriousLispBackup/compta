@@ -13,7 +13,7 @@ windows {
 	}
 	organizations {
 		width = 200;
-		height = 250;
+		height = 200;
 	}
 	inter {
 		width = 500;
