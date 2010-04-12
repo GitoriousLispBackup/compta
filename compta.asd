@@ -13,4 +13,5 @@
    (:file "extentions/2-1" :depends-on ("packages" "model" "gui"))
    (:file "extentions/2-3" :depends-on ("packages" "model" "gui"))
    (:file "extentions/2-4" :depends-on ("packages" "model" "gui"))
-   (:file "extentions/2-5" :depends-on ("packages" "model" "gui"))))
+   (:file "extentions/2-5" :depends-on ("packages" "model" "gui"))
+   (:file "extentions/3-8" :depends-on ("packages" "model" "gui"))))
