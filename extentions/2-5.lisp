@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;                                                                                                           ;;; 
 ;;; File : 2-5.lisp                                                                                           ;;; 
-;;; Show results for a given period                                                                           ;;;
+;;; Show Income Statement (compte de resultat) for a given period                                             ;;;
 ;;;                                                                                                           ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;                                                                                                           ;;;
@@ -22,13 +22,13 @@
 (defclass date-changer ()
   ((%transaction :initarg :transaction :accessor transaction)))
 
-;; Creates a view to display the Result
-(defclass result-view (view)
+;; Creates a view to display the Income Statement
+(defclass income-statement-view (view)
   ((%date-from :initarg :date-from :reader date-from)
    (%date-to :initarg :date-to :reader date-to)))
 
-;; Add a command "Show Result"
-(define-compta-command (com-show-result :name t)
+;; Add a command "Show Income Statement"
+(define-compta-command (com-show-income-statement :name t)
     ()
   (let* ((date-now (make-instance 'date))
 	(date-from (make-instance 'date
@@ -44,12 +44,12 @@
 			     :hour 0
 			     :minute 0)))
     (setf (stream-default-view (find-pane-named *application-frame* 'main))
-	  (make-instance 'result-view :date-from date-from :date-to date-to))))
+	  (make-instance 'income-statement-view :date-from date-from :date-to date-to))))
 
 ;; Compute what to display
-(defmethod display-main-with-view (frame pane (view result-view))
+(defmethod display-main-with-view (frame pane (view income-statement-view))
   (declare (ignore frame))
-  (format pane "Result for period ~a to ~a~%" (iso-date-string (date-from view)) (iso-date-string (date-to view)))
+  (format pane "Income statement for period ~a to ~a~%~%" (iso-date-string (date-from view)) (iso-date-string (date-to view)))
   (let ((debits '())
 	(credits '()))
     (loop for transaction in (transactions (current-organization *application-frame*))
@@ -57,10 +57,25 @@
 		   (/= -1 (compare-date (date-to view) (date transaction))))
 	      (progn (setf debits (append debits (debits transaction)))
 		     (setf credits (append credits (credits transaction))))))
-    (display-entry-adder pane "Debits"
+    (display-entry-income-statement pane "Revenues"
+			 (lambda (entry) (push entry credits)) credits)
+    (display-entry-income-statement pane "Expenses"
 			 (lambda (entry) (push entry debits)) debits)
-    (display-entry-adder pane "Credits"
-			 (lambda (entry) (push entry credits)) credits)))
+    (format pane "Net income : ~+d" (- (apply #'+ (mapcar #'amount credits)) (apply #'+ (mapcar #'amount debits))))))
+
+;; Same than display-entry-adder but without the adder
+(defun display-entry-income-statement (pane area-name push-entry entries)
+  (let ((medium (sheet-medium pane)))
+    (flet ((show-entry (entry)
+	     (with-text-family
+		 (medium :fixed)
+	       (with-output-as-presentation (pane (amount entry) 'amount)
+		 (format-amount pane (amount entry) "~10d.~2,'0d        ")))
+	     (with-output-as-presentation (pane (account entry) 'account)
+	       (format pane "~a~%" (name (account entry))))))
+      (format pane "~a :~%" area-name)
+      (loop for entry in (reverse entries)
+	    do (show-entry entry)))))
     
 ;; Compare date1 and date2, return 1 if date1 > date2, -1 if date1 < date2 and 0 if date1 = date2
 (defun compare-date (date1 date2)
