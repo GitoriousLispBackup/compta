@@ -1,3 +1,16 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;                                                                                                           ;;; 
+;;; File : 2-5.lisp                                                                                           ;;; 
+;;; Show results for a given period                                                                           ;;;
+;;;                                                                                                           ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;                                                                                                           ;;;
+;;; Features :                                                                                                ;;;
+;;;         - Default period of 1 year from the starting date suggested to the user                           ;;;
+;;;         - Default values if not in the config file or the config file does not exist                      ;;;
+;;;                                                                                                           ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (in-package #:compta-gui)
 
 (define-presentation-type year () :inherit-from 'integer)
@@ -9,11 +22,12 @@
 (defclass date-changer ()
   ((%transaction :initarg :transaction :accessor transaction)))
 
+;; Creates a view to display the Result
 (defclass result-view (view)
   ((%date-from :initarg :date-from :reader date-from)
    (%date-to :initarg :date-to :reader date-to)))
 
-
+;; Add a command "Show Result"
 (define-compta-command (com-show-result :name t)
     ()
   (let* ((date-now (make-instance 'date))
@@ -32,6 +46,7 @@
     (setf (stream-default-view (find-pane-named *application-frame* 'main))
 	  (make-instance 'result-view :date-from date-from :date-to date-to))))
 
+;; Compute what to display
 (defmethod display-main-with-view (frame pane (view result-view))
   (declare (ignore frame))
   (format pane "Result for period ~a to ~a~%" (iso-date-string (date-from view)) (iso-date-string (date-to view)))
@@ -47,7 +62,7 @@
     (display-entry-adder pane "Credits"
 			 (lambda (entry) (push entry credits)) credits)))
     
-
+;; Compare date1 and date2, return 1 if date1 > date2, -1 if date1 < date2 and 0 if date1 = date2
 (defun compare-date (date1 date2)
   (let ((encoded-date1 (encode-universal-time 0 (minute date1) (hour date1) (day date1) (month date1) (year date1) 0))
 	(encoded-date2 (encode-universal-time 0 (minute date2) (hour date2) (day date2) (month date2) (year date2) 0)))
