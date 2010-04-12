@@ -83,4 +83,4 @@
 	(encoded-date2 (encode-universal-time 0 (minute date2) (hour date2) (day date2) (month date2) (year date2) 0)))
     (cond ((> encoded-date1 encoded-date2) 1)
 	  ((< encoded-date1 encoded-date2) -1)
-	  ((t 0)))))
+	  (t 0))))
