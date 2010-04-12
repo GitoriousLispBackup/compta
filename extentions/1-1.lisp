@@ -25,7 +25,7 @@
 	     
 	  do (if (not (null current-entry-debits))
 		 (setf debits-sum (+ debits-sum (amount current-entry-debits)))))
-    
+    ;Cannot be factorized to respect font style
     (with-output-as-presentation
 	(pane credits-sum 'amount)
       (format pane "~%Credits sum :")
